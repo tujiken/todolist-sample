@@ -9,6 +9,11 @@ const addTasks = (task) => {
   const showItem = taskList.appendChild(listItem);
   showItem.innerHTML = task;
 
+  // 編集ボタンを追加・表示
+  const editButton = document.createElement("button");
+  editButton.innerHTML = "Edit";
+  listItem.appendChild(editButton);
+
   // タスクに削除ボタンを付与
   const deleteButton = document.createElement("button");
   deleteButton.innerHTML = "Delete";
@@ -21,6 +26,11 @@ const addTasks = (task) => {
   });
 };
 
+// const editTasks = () => {
+//   const editTask = taskList.innerHTML;
+//   console.log(editTask);
+// };
+
 // 削除ボタンにタスクを消す機能を付与
 const deleteTasks = (deleteButton) => {
   const chosenTask = deleteButton.closest("li");
@@ -31,9 +41,13 @@ const deleteTasks = (deleteButton) => {
 taskSubmit.addEventListener("click", (evt) => {
   evt.preventDefault();
   const task = taskValue.value;
-  addTasks(task);
-  taskValue.value = "";
+  if (task === "") {
+    alert("Tasknの入力欄が空です");
+    return;
+  } else {
+    addTasks(task);
+    taskValue.value = "";
+  }
 });
-
 // TODO: タイトルがあるときだけタスクを追加できるようにする
 // TODO: 編集ができるようにする
