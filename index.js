@@ -9,7 +9,7 @@ const addTasks = (task) => {
   const showItem = taskList.appendChild(listItem);
   showItem.innerHTML = task;
 
-  // 編集ボタンを追加・表示
+  // タスクに編集ボタンを追加・表示
   const editButton = document.createElement("button");
   editButton.innerHTML = "Edit";
   listItem.appendChild(editButton);
@@ -19,17 +19,24 @@ const addTasks = (task) => {
   deleteButton.innerHTML = "Delete";
   listItem.appendChild(deleteButton);
 
+  //編集ボタンをクリックし、イベントを発動（タスクを編集）
+  editButton.addEventListener("click", () => {});
+
   // 削除ボタンをクリックし、イベントを発動（タスクが削除）
   deleteButton.addEventListener("click", (evt) => {
     evt.preventDefault();
     deleteTasks(deleteButton);
   });
-};
 
-// const editTasks = () => {
-//   const editTask = taskList.innerHTML;
-//   console.log(editTask);
-// };
+  // Allclearをクリックし、イベントを発動（タスクが全削除）
+  clearButton.addEventListener("click", () => {
+    clearAllTasks();
+  });
+};
+//編集ボタンにタスクを編集する機能を追加
+const editTasks = () => {
+  const task = taskValue.value;
+};
 
 // 削除ボタンにタスクを消す機能を付与
 const deleteTasks = (deleteButton) => {
@@ -51,3 +58,9 @@ taskSubmit.addEventListener("click", (evt) => {
 });
 // TODO: タイトルがあるときだけタスクを追加できるようにする
 // TODO: 編集ができるようにする
+
+// クリアボタンを押すと全てのTaskが削除
+const clearButton = document.querySelector(".clear");
+const clearAllTasks = () => {
+  taskList.innerHTML = "";
+};
