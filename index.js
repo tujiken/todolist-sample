@@ -42,7 +42,7 @@ taskSubmit.addEventListener("click", (evt) => {
   evt.preventDefault();
   const task = taskValue.value;
   if (task === "") {
-    alert("Tasknの入力欄が空です");
+    alert("Taskの入力欄が空です");
     return;
   } else {
     addTasks(task);
