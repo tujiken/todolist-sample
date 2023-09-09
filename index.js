@@ -20,7 +20,9 @@ const addTasks = (task) => {
   listItem.appendChild(deleteButton);
 
   //編集ボタンをクリックし、イベントを発動（タスクを編集）
-  editButton.addEventListener("click", () => {});
+  editButton.addEventListener("click", () => {
+    editTasks();
+  });
 
   // 削除ボタンをクリックし、イベントを発動（タスクが削除）
   deleteButton.addEventListener("click", (evt) => {
@@ -32,10 +34,21 @@ const addTasks = (task) => {
   clearButton.addEventListener("click", () => {
     clearAllTasks();
   });
+
+  toggleClearButton();
 };
 //編集ボタンにタスクを編集する機能を追加
 const editTasks = () => {
-  const task = taskValue.value;
+  const editInput = document.getElementsByClassName("task_list");
+  const editTask = editInput.li;
+  console.log(editTask);
+  // for (let task = 0; task < editTask.length; task++) {
+  //   console.log(task);
+  // }
+  // const editItem = editInput.getElementsByTagName("li")[0];
+  // const editText = editItem.textContent;
+  // editInput.value = taskText.textContent;
+  console.log(editInput);
 };
 
 // 削除ボタンにタスクを消す機能を付与
@@ -63,4 +76,17 @@ taskSubmit.addEventListener("click", (evt) => {
 const clearButton = document.querySelector(".clear");
 const clearAllTasks = () => {
   taskList.innerHTML = "";
+  toggleClearButton();
 };
+
+const toggleClearButton = () => {
+  const tasks = taskList.querySelector("li");
+  if (tasks) {
+    clearButton.style.display = "inline-block";
+  } else {
+    clearButton.style.display = "none";
+  }
+};
+// console.log(taskValue);
+// console.log(taskSubmit);
+// console.log(taskList);
